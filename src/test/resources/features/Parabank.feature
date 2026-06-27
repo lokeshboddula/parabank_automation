@@ -22,7 +22,7 @@ Feature: ParaBank Account Registration and Sign In
     Then I should be logged in and see the account overview
     And I should print the account balance displayed on the page
 
-  @end-to-end @smoke
+  @e2e @smoke
   Scenario: Register a new account and sign in to view account balance
     When I navigate to the registration page
     And I fill in the registration form with valid user details

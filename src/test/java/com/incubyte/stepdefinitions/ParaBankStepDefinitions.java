@@ -1,6 +1,5 @@
 package com.incubyte.stepdefinitions;
-
-import com.incubyte.pages.AccountOverviewPage;
+import com.incubyte.pages.Accountoverviewpage;
 import com.incubyte.pages.HomePage;
 import com.incubyte.pages.RegistrationPage;
 import com.incubyte.utils.PlaywrightManager;
@@ -21,7 +20,7 @@ public class ParaBankStepDefinitions {
     private Page page;
     private HomePage homePage;
     private RegistrationPage registrationPage;
-    private AccountOverviewPage accountOverviewPage;
+    private Accountoverviewpage accountoverviewpage;
     private Map<String, String> userData;
 
     @Before
@@ -31,7 +30,7 @@ public class ParaBankStepDefinitions {
         page = PlaywrightManager.getPage();
         homePage            = new HomePage(page);
         registrationPage    = new RegistrationPage(page);
-        accountOverviewPage = new AccountOverviewPage(page);
+        accountoverviewpage = new Accountoverviewpage(page);
     }
 
     @After
@@ -130,7 +129,7 @@ public class ParaBankStepDefinitions {
 
     @Then("I should be logged in and see the account overview")
     public void iShouldBeLoggedInAndSeeTheAccountOverview() {
-        boolean loggedIn = accountOverviewPage.isLoggedIn();
+        boolean loggedIn = accountoverviewpage.isLoggedIn();
         if (!loggedIn) {
             throw new AssertionError("Login failed - user is not authenticated.");
         }
@@ -139,7 +138,7 @@ public class ParaBankStepDefinitions {
 
     @And("I should print the account balance displayed on the page")
     public void iShouldPrintTheAccountBalanceDisplayedOnThePage() {
-        accountOverviewPage.printAccountBalances();
+        accountoverviewpage.printAccountBalances();
         System.out.println("[Step] ✓ Account balance printed to console.");
     }
 }

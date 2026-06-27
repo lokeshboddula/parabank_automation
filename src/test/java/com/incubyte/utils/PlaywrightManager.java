@@ -13,10 +13,16 @@ public class PlaywrightManager {
 
     public static void initBrowser() {
         playwright = Playwright.create();
+
+        try (Playwright p = Playwright.create()) {
+            p.chromium().launch(); // triggers auto-install check
+        } catch (Exception ignored) {}
+
         browser = playwright.chromium().launch(
                 new BrowserType.LaunchOptions()
                         .setHeadless(false)
                         .setSlowMo(100)
+                        .setChannel("chrome")
         );
         context = browser.newContext(
                 new Browser.NewContextOptions()

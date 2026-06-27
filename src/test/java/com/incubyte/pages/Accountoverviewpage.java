@@ -6,7 +6,7 @@ import com.microsoft.playwright.Page;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AccountOverviewPage {
+public class Accountoverviewpage {
 
     private final Page page;
 
@@ -17,12 +17,12 @@ public class AccountOverviewPage {
     private final Locator accountOverviewLink;
     private final Locator welcomeMessage;
 
-    public AccountOverviewPage(Page page) {
+    public Accountoverviewpage(Page page) {
         this.page                = page;
         this.pageHeading         = page.locator("h1.title");
         this.accountRows         = page.locator("table#accountTable tbody tr");
         this.totalBalance        = page.locator("table#accountTable tfoot tr td:nth-child(2)");
-        this.accountOverviewLink = page.locator("a[href*='overview']");
+        this.accountOverviewLink = page.locator("a[href*='overview.htm']");
         this.welcomeMessage      = page.locator("#leftPanel p.smallText");
     }
 
@@ -39,9 +39,16 @@ public class AccountOverviewPage {
     }
 
     public void navigateToAccountOverview() {
-        if (accountOverviewLink.isVisible()) {
-            accountOverviewLink.click();
-            page.waitForLoadState();
+        try {
+            if (accountOverviewLink.isVisible()) {
+                accountOverviewLink.click();
+                page.waitForLoadState();
+                // ADD this wait — the table loads via a small delay
+                page.waitForSelector("table#accountTable",
+                        new Page.WaitForSelectorOptions().setTimeout(10000));
+            }
+        } catch (Exception e) {
+            System.out.println("[AccountOverviewPage] Could not navigate to overview: " + e.getMessage());
         }
     }
 

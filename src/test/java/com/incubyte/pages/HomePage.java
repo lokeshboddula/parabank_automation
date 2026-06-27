@@ -19,10 +19,10 @@ public class HomePage {
     public HomePage(Page page) {
         this.page = page;
         this.registerLink  = page.locator("a[href*='register']");
-        this.usernameInput = page.locator("input[name='username']");
-        this.passwordInput = page.locator("input[name='password']");
+        this.usernameInput = page.locator("[name='username']");
+        this.passwordInput = page.locator("[name='password']");
         this.loginButton   = page.locator("input[value='Log In']");
-        this.logoutLink    = page.locator("a[href*='logout']");
+        this.logoutLink = page.locator("a[href*='logout.htm']");
     }
 
     public void navigateTo() {
@@ -38,6 +38,9 @@ public class HomePage {
     }
 
     public void login(String username, String password) {
+        System.out.println("[HomePage] Attempting to log in with username: " + username);
+        System.out.println("[HomePage] Attempting to log in with password: " + password);
+        System.out.println("[HomePage] is username visible " + usernameInput.isVisible());
         usernameInput.fill(username);
         passwordInput.fill(password);
         loginButton.click();

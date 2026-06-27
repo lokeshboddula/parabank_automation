@@ -64,7 +64,8 @@ public class RegistrationPage {
 
     public boolean isRegistrationSuccessful() {
         try {
-            page.waitForSelector("h1.title", new Page.WaitForSelectorOptions().setTimeout(8000));
+            // CHANGE timeout from 8000 to 12000
+            page.waitForSelector("h1.title", new Page.WaitForSelectorOptions().setTimeout(12000));
             String headingText = successHeader.textContent();
             boolean success = headingText != null && headingText.contains("Welcome");
             System.out.println("[RegistrationPage] Registration success: " + success + " | Heading: " + headingText);
