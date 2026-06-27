@@ -21,7 +21,7 @@ public class Accountoverviewpage {
         this.page                = page;
         this.pageHeading         = page.locator("h1.title");
         this.accountRows         = page.locator("table#accountTable tbody tr");
-        this.totalBalance        = page.locator("table#accountTable tfoot tr td:nth-child(2)");
+        this.totalBalance        = page.locator("#accountTable tbody tr:last-child td:nth-child(2)");
         this.accountOverviewLink = page.locator("a[href*='overview.htm']");
         this.welcomeMessage      = page.locator("#leftPanel p.smallText");
     }
